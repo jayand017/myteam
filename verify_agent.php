@@ -4,17 +4,13 @@ session_start();
 include("library/validate_agent.php");
 include("conf/config.php");
 
-
 $agent_id = $_POST["agent_id"];
 $agent_pass = $_POST["agent_pass"];
-
-echo $agent_id;
-echo $agent_pass;
 
 //Create a object
 $db = new DB();
 $va = new ValidateAgent();
-$arr = $va -> looup_agent($db, $agent_id, $agent_pass);
+$arr = $va -> looup_agent($db, $agent_id, md5($agent_pass));
 
 if(!empty($arr)) {
     foreach($arr as $key => $value) {

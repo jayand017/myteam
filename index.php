@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-
+session_start();
 ?>
 <html lang="en">
 
@@ -32,7 +32,7 @@
     <div class="row justify-content-center">
         <div class="col col-md-5">
         <!-- Form login -->
-        <form method="post" action="exec.php">
+        <form method="post" action="verify_agent.php">
             <p class="h5 text-center mb-4">LogIn</p>
 
             <div class="md-form">
@@ -57,7 +57,16 @@
             echo '<h5><span class="badge badge-danger">Invalid LogIn ID or Password</span></h5>';
         } else if(isset($_GET["err"]) && $_GET["err"]==1){
             echo '<h5><span class="badge badge-success">Success, Redirecting...</span></h5>';
-            header("refresh:4;url=test.php");
+            if($_SESSION["agent_type"]=="Admin"){
+                exit(header("refresh:3;url=admin.php"));
+            }
+            else if($_SESSION["agent_type"]=="Sales"){
+                exit(header("refresh:3;url=sales.php"));
+            }
+            else if($_SESSION["agent_type"]=="Tech"){
+                exit(header("refresh:3;url=tech.php"));
+            }
+            
         }
         ?>
         </div>
