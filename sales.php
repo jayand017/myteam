@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <?php
 session_start();
-include("conf/config.php");
+if(isset($_SESSION["agent_id"])  && $_SESSION["agent_type"]=="Sales"){
+    //continue;
+}
+else{
+    exit(header("Location:index.php"));
+}
 ?>
 <html lang="en">
 
@@ -41,6 +46,9 @@ include("conf/config.php");
                 <li class="nav-item active">
                     <a class="nav-link" href="#">New Sale <span class="sr-only">(current)</span></a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="logout.php">Log Out</a>
+                </li>
 
                 
 
@@ -59,62 +67,97 @@ include("conf/config.php");
     <!-- Content here -->
     <div class="row justify-content-center">
         
-        
-        <div class="col col-md-5">
-        <!-- Form login -->
-        <form method="post" action="add_sale.php">
-            <p class="h5 text-center mb-4">Add New Sales</p>
+        <div class="col col-md-12"><p class="h5 text-center mb-4">Add New Sales</p></div>
 
-            
+    </div>
+
+
+    <form method="post" action="add_sale.php">
+    <div class="row justify-content-center">
+       
+        <div class="col col-md-5">
+            <!-- Form login -->
 
             <div class="md-form">
                 <i class="fa fa-user prefix grey-text"></i>
-                <input type="text" id="defaultForm-id" name="agent_id" class="form-control" required>
-                <label for="defaultForm-id">Enter User ID</label>
+                <input type="text" id="defaultForm-name" name="cust_name" class="form-control" required>
+                <label for="defaultForm-name">Enter Customer Name</label>
             </div>
 
             <div class="md-form">
-                <i class="fa fa-pencil prefix grey-text"></i>
-                <input type="text" id="defaultForm-name" name="agent_name" class="form-control" required>
-                <label for="defaultForm-name">Enter User Name</label>
+                <i class="fa fa-envelope prefix grey-text"></i>
+                <input type="email" id="defaultForm-email" name="cust_email" class="form-control" required>
+                <label for="defaultForm-email">Enter Customer Email</label>
             </div>
 
             <div class="md-form">
-                <i class="fa fa-lock prefix grey-text"></i>
-                <input type="password" id="defaultForm-pass" name="agent_pass" class="form-control" required>
-                <label for="defaultForm-pass">Enter password</label>
+                <i class="fa fa-phone prefix grey-text"></i>
+                <input type="number" id="defaultForm-phone" name="cust_phone" class="form-control" required>
+                <label for="defaultForm-phone">Enter Customer Phone No.</label>
             </div>
 
-            <div class="form-inline">
-
-                <i class="fa fa-check-circle prefix grey-text" style="font-size: 30px; margin-right:20px;"></i>
-                <div class="form-group">
-                    <input name="agent_type" value="Sales" type="radio" id="radio11" checked="checked">
-                    <label for="radio11">&nbsp;&nbsp;Sales Agent</label>
-                </div>
-
-                <div class="form-group">
-                    <input name="agent_type" value="Tech" type="radio" id="radio21">
-                    <label for="radio21">&nbsp;&nbsp;Tech Agent</label>
-                </div>
-
+            <div class="md-form">
+                <i class="fa fa-dollar prefix grey-text"></i>
+                <input type="number" id="defaultForm-pass" name="sale_amount" class="form-control" required>
+                <label for="defaultForm-pass">Enter Sale Amount</label>
             </div>
-            
-            <br/>
-            <div>
-                <button class="btn btn-default">Submit</button>
+        </div>
+
+        <div class="col col-md-5">
+
+            <div class="md-form">
+                <i class="fa fa-info-circle prefix grey-text"></i>
+                <input type="text" id="defaultForm-issue" name="tech_issue" class="form-control">
+                <label for="defaultForm-issue">Enter Tech Issue</label>
             </div>
-        </form>
+
+            <div class="md-form">
+                <i class="fa fa-star prefix grey-text"></i>
+                <select class="form-control" name="soft_plan" id="defaultForm-softplan" style="color:#757575; font-weight:300; width:190px; margin-left:50px; display:inline-block;">
+                    <option value="">Software Plans</option>
+                    <option value="1 year">1 year</option>
+                    <option value="2 year">2 year</option>
+                    <option value="3 year">3 year</option>
+                    <option value="4 year">4 year</option>
+                    <option value="5 year">5 year</option>
+                    <option value="Above 5 year">Above 5 year</option>
+                </select>
+                
+                <select class="form-control" name="tech_plan" style="width:200px; color:#757575; font-weight:300; display:inline-block;">
+                    <option value="">Tech Plans</option>
+                    <option value="1 year">1 year</option>
+                    <option value="2 year">2 year</option>
+                    <option value="3 year">3 year</option>
+                    <option value="4 year">4 year</option>
+                    <option value="5 year">5 year</option>
+                    <option value="Above 5 year">Above 5 year</option>
+                </select>
+            </div>
+
+            <div class="md-form">
+                <i class="fa fa-pencil-square-o prefix grey-text"></i>
+                <textarea rows="5" cols="50" class="form-control" style="text-indent:4px; height:100px;" name="remark" id="defaultForm-remark"></textarea>
+                <label for="defaultForm-remark" style="text-indent:4px;">Enter Remark</label>
+            </div>
+
+        </div>
+
+        </div>
+        <br/>
+        <div>
+            <button class="btn btn-default">Submit</button>
+        </div>
+
         <!-- Form login -->
         <br/>
         <?php if(isset($_GET["err"]) && $_GET["err"]==-1) {
             echo '<h5><span class="badge badge-danger">Sorry, Something went wrong!</span></h5>';
         } else if(isset($_GET["err"]) && $_GET["err"]==1){
-            echo '<h5><span class="badge badge-success">Agent added successfully</span></h5>';
+            echo '<h5><span class="badge badge-success">Sales added successfully</span></h5>';
             
         }
         ?>
-        </div>
+    </form>   
 
         
     </div>

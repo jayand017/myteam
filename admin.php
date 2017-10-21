@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <?php
 session_start();
+if(isset($_SESSION["agent_id"])  && $_SESSION["agent_type"]=="Admin"){
+    //continue;
+}
+else{
+    exit(header("Location:index.php"));
+}
 include("conf/config.php");
 ?>
 <html lang="en">
@@ -47,12 +53,14 @@ include("conf/config.php");
             <!-- Links -->
             <ul class="navbar-nav">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Add Agent <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="admin.php">Add Agent <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">View Sales</a>
+                    <a class="nav-link" href="view_sales.php">View Sales</a>
                 </li>
-
+                <li class="nav-item">
+                    <a class="nav-link" href="logout.php">Log Out</a>
+                </li>
                 
 
             </ul>

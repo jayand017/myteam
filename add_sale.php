@@ -1,23 +1,25 @@
 <?php
 session_start();
 //include files
-include("library/insert_agent.php");
+include("library/insert_sale.php");
 include("conf/config.php");
 
-$agent_id = $_POST["agent_id"];
-$agent_name = $_POST["agent_name"];
-$agent_pass = $_POST["agent_pass"];
-$agent_type = $_POST["agent_type"];
+$sale_date = date("d-m-Y");
+$cust_name = $_POST["cust_name"];
+$cust_email = $_POST["cust_email"];
+$cust_phone = $_POST["cust_phone"];
+$sale_amount = $_POST["sale_amount"];
+$tech_issue = $_POST["tech_issue"];
+$soft_plan = $_POST["soft_plan"];
+$tech_plan = $_POST["tech_plan"];
+$remark = $_POST["remark"];
+$agent_id = $_SESSION["agent_id"];
 
-echo $agent_id;
-echo $agent_name;
-echo $agent_pass;
-echo $agent_type;
 
 //Create a object
 $db = new DB();
-$ia = new InsertAgent();
-$bol = $ia -> insert_agent($db, $agent_id, $agent_name, md5($agent_pass), $agent_type);
+$ia = new InsertSale();
+$bol = $ia -> insert_sale($db, $sale_date, $cust_name, $cust_email, $cust_phone, $sale_amount, $tech_issue, $soft_plan, $tech_plan, $remark, $agent_id);
 
 if($bol === true) {
     exit(header("Location:sales.php?err=1"));      

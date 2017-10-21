@@ -9,11 +9,6 @@ $agent_name = $_POST["agent_name"];
 $agent_pass = $_POST["agent_pass"];
 $agent_type = $_POST["agent_type"];
 
-echo $agent_id;
-echo $agent_name;
-echo $agent_pass;
-echo $agent_type;
-
 //Create a object
 $db = new DB();
 $ia = new InsertAgent();
