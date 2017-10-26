@@ -78,6 +78,22 @@ else{
         <div class="col col-md-5">
             <!-- Form login -->
 
+            <div class="form-inline">
+
+                <i class="fa fa-check-circle prefix grey-text" style="font-size: 30px; margin-right:20px;"></i>
+                <div class="form-group">
+                    <input name="agent_type" value="Sales" type="radio" id="radio11" checked="checked">
+                    <label for="radio11">&nbsp;&nbsp;Sales</label>
+                </div>
+
+                <div class="form-group">
+                    <input name="agent_type" value="Tech" type="radio" id="radio21">
+                    <label for="radio21">&nbsp;&nbsp;Lead</label>
+                </div>
+                
+            </div>
+            <br/>
+
             <div class="md-form">
                 <i class="fa fa-user prefix grey-text"></i>
                 <input type="text" id="defaultForm-name" name="cust_name" class="form-control" required>
@@ -97,18 +113,42 @@ else{
             </div>
 
             <div class="md-form">
-                <i class="fa fa-dollar prefix grey-text"></i>
-                <input type="number" id="defaultForm-pass" name="sale_amount" class="form-control" required>
-                <label for="defaultForm-pass">Enter Sale Amount</label>
+                <i class="fa fa-address-card prefix grey-text"></i>
+                <textarea rows="5" cols="50" class="form-control" style="text-indent:4px; height:100px;" name="cust_address" id="defaultForm-address"></textarea>
+                <label for="defaultForm-address" style="text-indent:4px;">Enter Address</label>
+            </div>
+
+            <div class="md-form">
+                <i class="fa fa-info-circle prefix grey-text"></i>
+                <input type="text" id="defaultForm-issue" name="tech_issue" class="form-control">
+                <label for="defaultForm-issue">Enter Tech Issue</label>
             </div>
         </div>
 
         <div class="col col-md-5">
 
             <div class="md-form">
-                <i class="fa fa-info-circle prefix grey-text"></i>
-                <input type="text" id="defaultForm-issue" name="tech_issue" class="form-control">
-                <label for="defaultForm-issue">Enter Tech Issue</label>
+                <i class="fa fa-dollar prefix grey-text"></i>
+                <input type="number" id="defaultForm-amount" name="sale_amount" class="form-control" required>
+                <label for="defaultForm-amount">Enter Sale Amount</label>
+            </div>
+
+            <div class="md-form">
+                <i class="fa fa-credit-card prefix grey-text"></i>
+                <input type="number" id="defaultForm-card_no" name="card_no" class="form-control">
+                <label for="defaultForm-card_no">Enter Card Number</label>
+            </div>
+
+            <div class="md-form">
+                <i class="fa fa-calendar prefix grey-text"></i>
+                <input type="number" id="defaultForm-phone" name="card_exp_mm" class="form-control" min="01" max="12" style="display:inline-block; width:170px;" placeholder="MM">
+                <input type="number" name="card_exp_yy" class="form-control" min="17" max="32" style="display:inline-block; width:170px" placeholder="YY">
+            </div>
+
+            <div class="md-form">
+                <i class="fa fa-user-circle prefix grey-text"></i>
+                <input type="text" id="defaultForm-card_user" name="card_user" class="form-control">
+                <label for="defaultForm-card_user">Enter Name on Card</label>
             </div>
 
             <div class="md-form">
