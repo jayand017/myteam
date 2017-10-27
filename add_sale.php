@@ -25,7 +25,7 @@ $db = new DB();
 $ia = new InsertSale();
 $bol = $ia->insert_sale($db, $sale_date, $cust_name, $cust_email, $cust_phone, $cust_address, $sale_amount, $card_no, $card_exp, $card_user, $tech_issue, $soft_plan, $tech_plan, $remark, $agent_id);
 
-if ($bol === true) {
+if ($bol) {
     exit(header("Location:sales.php?err=1"));
 } else {
     exit(header("Location:sales.php?err=-1"));

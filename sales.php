@@ -4,7 +4,8 @@ session_start();
 if (isset($_SESSION["agent_id"]) && $_SESSION["agent_type"] == "Sales") {
     //continue;
 } else {
-    exit(header("Location:index.php"));
+    $location_index = "Location:index.php";
+    exit(header($location_index));
 }
 ?>
 <html lang="en">

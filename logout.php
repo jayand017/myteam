@@ -1,4 +1,5 @@
 <?php
 session_destroy();
-exit(header("Location:index.php"));
+$location_index = "Location:index.php";
+exit(header($location_index));
 ?>
