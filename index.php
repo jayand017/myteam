@@ -21,68 +21,68 @@ session_start();
 
 <body>
 
-    <!-- As a link -->
-    <nav class="navbar navbar-dark indigo">
-        <a class="navbar-brand" href="#">   MyTeam <small>v0.1</small></a>
-    </nav>
-    <br/>
-    <!-- Start your project here-->
-    <div class="container">
+<!-- As a link -->
+<nav class="navbar navbar-dark indigo">
+    <a class="navbar-brand" href="#"> MyTeam
+        <small>v0.1</small>
+    </a>
+</nav>
+<br/>
+<!-- Start your project here-->
+<div class="container">
     <!-- Content here -->
     <div class="row justify-content-center">
         <div class="col col-md-5">
-        <!-- Form login -->
-        <form method="post" action="verify_agent.php">
-            <p class="h5 text-center mb-4">LogIn</p>
+            <!-- Form login -->
+            <form method="post" action="verify_agent.php">
+                <p class="h5 text-center mb-4">LogIn</p>
 
-            <div class="md-form">
-                <i class="fa fa-envelope prefix grey-text"></i>
-                <input type="text" id="defaultForm-id" name="agent_id" class="form-control" required>
-                <label for="defaultForm-id">Your User ID</label>
-            </div>
+                <div class="md-form">
+                    <i class="fa fa-envelope prefix grey-text"></i>
+                    <input type="text" id="defaultForm-id" name="agent_id" class="form-control" required>
+                    <label for="defaultForm-id">Your User ID</label>
+                </div>
 
-            <div class="md-form">
-                <i class="fa fa-lock prefix grey-text"></i>
-                <input type="password" id="defaultForm-pass" name="agent_pass" class="form-control" required>
-                <label for="defaultForm-pass">Your password</label>
-            </div>
+                <div class="md-form">
+                    <i class="fa fa-lock prefix grey-text"></i>
+                    <input type="password" id="defaultForm-pass" name="agent_pass" class="form-control" required>
+                    <label for="defaultForm-pass">Your password</label>
+                </div>
 
-            <div class="text-center">
-                <button class="btn btn-default">Login</button>
-            </div>
-        </form>
-        <!-- Form login -->
-        <br/>
-        <?php if(isset($_GET["err"]) && $_GET["err"]==-1) {
-            echo '<h5><span class="badge badge-danger">Invalid LogIn ID or Password</span></h5>';
-        } else if(isset($_GET["err"]) && $_GET["err"]==1){
-            echo '<h5><span class="badge badge-success">Success, Redirecting...</span></h5>';
-            if($_SESSION["agent_type"]=="Admin"){
-                exit(header("refresh:3;url=admin.php"));
+                <div class="text-center">
+                    <button class="btn btn-default">Login</button>
+                </div>
+            </form>
+            <!-- Form login -->
+            <br/>
+            <?php if (isset($_GET["err"]) && $_GET["err"] == -1) {
+                echo '<h5><span class="badge badge-danger">Invalid LogIn ID or Password</span></h5>';
+            } else if (isset($_GET["err"]) && $_GET["err"] == 1) {
+                echo '<h5><span class="badge badge-success">Success, Redirecting...</span></h5>';
+                if ($_SESSION["agent_type"] == "Admin") {
+                    exit(header("refresh:3;url=admin.php"));
+                } else if ($_SESSION["agent_type"] == "Sales") {
+                    exit(header("refresh:3;url=sales.php"));
+                } else if ($_SESSION["agent_type"] == "Tech") {
+                    exit(header("refresh:3;url=tech.php"));
+                }
+
             }
-            else if($_SESSION["agent_type"]=="Sales"){
-                exit(header("refresh:3;url=sales.php"));
-            }
-            else if($_SESSION["agent_type"]=="Tech"){
-                exit(header("refresh:3;url=tech.php"));
-            }
-            
-        }
-        ?>
+            ?>
         </div>
     </div>
-    </div>
-    <!-- /Start your project here-->
+</div>
+<!-- /Start your project here-->
 
-    <!-- SCRIPTS -->
-    <!-- JQuery -->
-    <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
-    <!-- Bootstrap tooltips -->
-    <script type="text/javascript" src="js/popper.min.js"></script>
-    <!-- Bootstrap core JavaScript -->
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <!-- MDB core JavaScript -->
-    <script type="text/javascript" src="js/mdb.min.js"></script>
+<!-- SCRIPTS -->
+<!-- JQuery -->
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="js/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="js/mdb.min.js"></script>
 </body>
 
 </html>
