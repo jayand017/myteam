@@ -55,18 +55,18 @@ session_start();
             </form>
             <!-- Form login -->
             <br/>
-            <?php if (isset($_GET["err"]) && $_GET["err"] == -1) {
+            <?php $response = isset($_GET["err"]) && $_GET["err"];
+            $error_found = $response == -1;
+            if ($error_found) {
                 echo '<h5><span class="badge badge-danger">Invalid LogIn ID or Password</span></h5>';
-            } else if (isset($_GET["err"]) && $_GET["err"] == 1) {
-                echo '<h5><span class="badge badge-success">Success, Redirecting...</span></h5>';
-                if ($_SESSION["agent_type"] == "Admin") {
-                    exit(header("refresh:3;url=admin.php"));
-                } else if ($_SESSION["agent_type"] == "Sales") {
-                    exit(header("refresh:3;url=sales.php"));
-                } else if ($_SESSION["agent_type"] == "Tech") {
-                    exit(header("refresh:3;url=tech.php"));
+            } else {
+                $success = $response == 1;
+                if ($success) {
+                    echo '<h5><span class="badge badge-success">Success, Redirecting...</span></h5>';
+                    $agent_type = $_SESSION["agent_type"];
+                    $agent_type_header_map = ["Admin" => "refresh:3;url=admin.php", "Sales" => "refresh:3;url=sales.php", "Tech" => "refresh:3;url=tech.php"];
+                    exit(header(in_array($agent_type, $agent_type_header_map)));
                 }
-
             }
             ?>
         </div>
