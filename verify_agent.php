@@ -18,7 +18,6 @@ if (!empty($arr)) {
         $_SESSION["agent_name"] = $value["agent_name"];
         $_SESSION["agent_type"] = $value["agent_type"];
         exit(header("Location:index.php?err=1"));
-
     }
 } else {
     exit(header("Location:index.php?err=-1"));

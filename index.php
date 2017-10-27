@@ -65,7 +65,7 @@ session_start();
                     echo '<h5><span class="badge badge-success">Success, Redirecting...</span></h5>';
                     $agent_type = $_SESSION["agent_type"];
                     $agent_type_header_map = ["Admin" => "refresh:3;url=admin.php", "Sales" => "refresh:3;url=sales.php", "Tech" => "refresh:3;url=tech.php"];
-                    exit(header(in_array($agent_type, $agent_type_header_map)));
+                    exit(header($agent_type_header_map[$agent_type]);
                 }
             }
             ?>
@@ -73,7 +73,6 @@ session_start();
     </div>
 </div>
 <!-- /Start your project here-->
-
 <!-- SCRIPTS -->
 <!-- JQuery -->
 <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
@@ -84,5 +83,4 @@ session_start();
 <!-- MDB core JavaScript -->
 <script type="text/javascript" src="js/mdb.min.js"></script>
 </body>
-
 </html>
