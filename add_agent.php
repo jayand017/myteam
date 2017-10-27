@@ -14,7 +14,7 @@ $db = new DB();
 $ia = new InsertAgent();
 $bol = $ia->insert_agent($db, $agent_id, $agent_name, md5($agent_pass), $agent_type);
 
-if ($bol === true) {
+if ($bol) {
     exit(header("Location:admin.php?err=1"));
 } else {
     exit(header("Location:admin.php?err=-1"));
