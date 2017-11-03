@@ -114,13 +114,13 @@ include("conf/config.php");
             <?php 
             //Create a object
             $db = new DB();
-            $sql_list_sales = "SELECT sale_date, cust_name, cust_email, cust_phone, sale_amount, tech_issue, soft_plan, tech_plan, remark, agent_id
+            $sql_list_sales = "SELECT sale_date, cust_name, cust_email, cust_phone, sale_amount, tech_issue, card_no, card_exp, card_user, remark, agent_id
                                FROM sales
                              ";
 
             $array_list_sales = $db -> select($sql_list_sales);
             ?>
-            <p class="h5 text-center mb-4">View Agents</p>
+            <p class="h5 text-center mb-4">View Sales</p>
             
 
             <!--Table-->
@@ -133,8 +133,7 @@ include("conf/config.php");
                         <th class="w-auto">Phone</th>
                         <th class="w-auto">Amount</th>
                         <th class="w-auto">Issue</th>
-                        <th class="w-auto">Soft Plan</th>
-                        <th class="w-auto">Tech Plan</th>
+                        <th class="w-auto">Card Details</th>
                         <th class="w-auto">Remark</th>
                         <th class="w-auto">Agent</th>
                     </tr>
@@ -151,8 +150,7 @@ include("conf/config.php");
                             echo '<td>'.$value["cust_phone"].'</td>';
                             echo '<td>'.$value["sale_amount"].'</td>';
                             echo '<td>'.$value["tech_issue"].'</td>';
-                            echo '<td>'.$value["soft_plan"].'</td>';
-                            echo '<td>'.$value["tech_plan"].'</td>';
+                            echo '<td>'.$value["card_no"].'<br/>'.$value["card_exp"].'<br/>'.$value["card_user"].'</td>';
                             echo '<td>'.$value["remark"].'</td>';
                             echo '<td>'.$value["agent_id"].'</td>';
                             echo '</tr>';
