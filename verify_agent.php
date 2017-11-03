@@ -10,18 +10,16 @@ $agent_pass = $_POST["agent_pass"];
 //Create a object
 $db = new DB();
 $va = new ValidateAgent();
-$arr = $va -> looup_agent($db, $agent_id, md5($agent_pass));
+$arr = $va->looup_agent($db, $agent_id, md5($agent_pass));
 
-if(!empty($arr)) {
-    foreach($arr as $key => $value) {
+if (!empty($arr)) {
+    foreach ($arr as $key => $value) {
         $_SESSION["agent_id"] = $value["agent_id"];
         $_SESSION["agent_name"] = $value["agent_name"];
         $_SESSION["agent_type"] = $value["agent_type"];
         exit(header("Location:index.php?err=1"));
-        
     }
-}
-else {
+} else {
     exit(header("Location:index.php?err=-1"));
 }
 ?>
