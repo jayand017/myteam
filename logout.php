@@ -1,5 +1,11 @@
 <?php
+session_start();
+?>
+<html>
+    <head></head>
+    <body><h2>Bye Bye</h2></body>
+</html>
+<?php
 session_destroy();
-$location_index = "Location:index.php";
-exit(header($location_index));
+exit(header("Location:index.php"));
 ?>

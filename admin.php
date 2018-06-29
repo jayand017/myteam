@@ -1,9 +1,15 @@
 <!DOCTYPE html>
 <?php
 session_start();
-if (isset($_SESSION["agent_id"]) && $_SESSION["agent_type"] == "Admin") {
-    //continue;
-} else {
+if(isset($_SESSION["agent_id"])  && $_SESSION["agent_type"]=="Admin"){
+    if(isset($_GET["action"])) {
+        $action = $_GET["action"];
+    }
+    else {
+        $action = "insert";
+    }
+}
+else{
     exit(header("Location:index.php"));
 }
 include("conf/config.php");
@@ -36,108 +42,108 @@ include("conf/config.php");
 
 <body>
 
-<!--Navbar-->
-<nav class="navbar navbar-expand-lg navbar-dark red">
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark red">
 
-    <!-- Navbar brand -->
-    <a class="navbar-brand" href="#">Hi, <?php echo $_SESSION["agent_name"]; ?></a>
+        <!-- Navbar brand -->
+        <a class="navbar-brand" href="#">Hi, <?php echo $_SESSION["agent_name"];?></a>
 
-    <!-- Collapse button -->
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
+        <!-- Collapse button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
             aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
 
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+        <!-- Collapsible content -->
+        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
 
-        <!-- Links -->
-        <ul class="navbar-nav">
-            <li class="nav-item active">
-                <a class="nav-link" href="admin.php">Add Agent <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="view_sales.php">View Sales</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="logout.php">Log Out</a>
-            </li>
+            <!-- Links -->
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="admin.php">Add Agent <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="view_sales.php">View Sales</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="logout.php">Log Out</a>
+                </li>
+                
 
+            </ul>
+            <!-- Links -->
 
-        </ul>
-        <!-- Links -->
+            
+        </div>
+        <!-- Collapsible content -->
 
-
-    </div>
-    <!-- Collapsible content -->
-
-</nav>
-<!--/.Navbar-->
-<br/>
-<!-- Start your project here-->
-<div class="container">
+    </nav>
+    <!--/.Navbar-->
+    <br/>
+    <!-- Start your project here-->
+    <div class="container">
     <!-- Content here -->
     <div class="row justify-content-center">
-
-
+        
+        
         <div class="col col-md-5">
-            <!-- Form login -->
-            <form method="post" action="add_agent.php">
-                <p class="h5 text-center mb-4">Add New Agent</p>
+        <!-- Form login -->
+        <form method="post" action="add_agent.php?action=<?php echo $action; ?>">
+            <p class="h5 text-center mb-4">Add New Agent</p>
 
+            
 
-                <div class="md-form">
-                    <i class="fa fa-user prefix grey-text"></i>
-                    <input type="text" id="defaultForm-id" name="agent_id" class="form-control" required>
-                    <label for="defaultForm-id">Enter User ID</label>
+            <div class="md-form">
+                <i class="fa fa-user prefix grey-text"></i>
+                <input type="text" id="defaultForm-id" name="agent_id" class="form-control" value="<?php if(isset($_GET["temp_id"])){ echo $_GET["temp_id"];} ?>" required>
+                <label for="defaultForm-id">Enter User ID</label>
+            </div>
+
+            <div class="md-form">
+                <i class="fa fa-pencil prefix grey-text"></i>
+                <input type="text" id="defaultForm-name" name="agent_name" class="form-control" value="<?php if(isset($_GET["temp_name"])){ echo $_GET["temp_name"];} ?>" required>
+                <label for="defaultForm-name">Enter User Name</label>
+            </div>
+
+            <div class="md-form">
+                <i class="fa fa-lock prefix grey-text"></i>
+                <input type="password" id="defaultForm-pass" name="agent_pass" class="form-control">
+                <label for="defaultForm-pass">Enter password</label>
+            </div>
+
+            <div class="form-inline">
+
+                <i class="fa fa-check-circle prefix grey-text" style="font-size: 30px; margin-right:20px;"></i>
+                <div class="form-group">
+                    <input name="agent_type" value="Sales" type="radio" id="radio11" <?php if(isset($_GET["temp_type"]) && ($_GET["temp_type"])=="Sales"){ echo "checked";} ?>>
+                    <label for="radio11">&nbsp;&nbsp;Sales Agent</label>
                 </div>
 
-                <div class="md-form">
-                    <i class="fa fa-pencil prefix grey-text"></i>
-                    <input type="text" id="defaultForm-name" name="agent_name" class="form-control" required>
-                    <label for="defaultForm-name">Enter User Name</label>
+                <div class="form-group">
+                    <input name="agent_type" value="Tech" type="radio" id="radio21" <?php if(isset($_GET["temp_type"]) && ($_GET["temp_type"])=="Tech"){ echo "checked";} ?>>
+                    <label for="radio21">&nbsp;&nbsp;Tech Agent</label>
                 </div>
 
-                <div class="md-form">
-                    <i class="fa fa-lock prefix grey-text"></i>
-                    <input type="password" id="defaultForm-pass" name="agent_pass" class="form-control" required>
-                    <label for="defaultForm-pass">Enter password</label>
-                </div>
-
-                <div class="form-inline">
-
-                    <i class="fa fa-check-circle prefix grey-text" style="font-size: 30px; margin-right:20px;"></i>
-                    <div class="form-group">
-                        <input name="agent_type" value="Sales" type="radio" id="radio11" checked="checked">
-                        <label for="radio11">&nbsp;&nbsp;Sales Agent</label>
-                    </div>
-
-                    <div class="form-group">
-                        <input name="agent_type" value="Tech" type="radio" id="radio21">
-                        <label for="radio21">&nbsp;&nbsp;Tech Agent</label>
-                    </div>
-
-                </div>
-
-                <br/>
-                <div>
-                    <button class="btn btn-default">Submit</button>
-                </div>
-            </form>
-            <!-- Form login -->
+            </div>
+            
             <br/>
-            <?php if (isset($_GET["err"]) && $_GET["err"] == -1) {
-                echo '<h5><span class="badge badge-danger">Sorry, Something went wrong!</span></h5>';
-            } else if (isset($_GET["err"]) && $_GET["err"] == 1) {
-                echo '<h5><span class="badge badge-success">Agent added successfully</span></h5>';
-
-            }
-            ?>
+            <div>
+                <button class="btn btn-default">Submit</button>
+            </div>
+        </form>
+        <!-- Form login -->
+        <br/>
+        <?php if(isset($_GET["err"]) && $_GET["err"]==-1) {
+            echo '<h5><span class="badge badge-danger">Sorry, Something went wrong!</span></h5>';
+        } else if(isset($_GET["err"]) && $_GET["err"]==1){
+            echo '<h5><span class="badge badge-success">Agent added successfully</span></h5>';
+            
+        }
+        ?>
         </div>
 
         <div class="col col-md-1"></div>
 
         <div class="col col-md-6">
-            <?php
+            <?php 
             //Create a object
             $db = new DB();
             $sql_list_agent = "SELECT agent_id, agent_name, agent_type
@@ -145,7 +151,7 @@ include("conf/config.php");
                                WHERE agent_type NOT IN ('Admin')
                              ";
 
-            $array_list_agent = $db->select($sql_list_agent);
+            $array_list_agent = $db -> select($sql_list_agent);
             ?>
             <p class="h5 text-center mb-4">View Agents</p>
             <div class="table-wrapper-2">
@@ -153,49 +159,55 @@ include("conf/config.php");
                 <!--Table-->
                 <table class="table table-responsive table-sm">
                     <thead class="mdb-color lighten-4">
-                    <tr>
-                        <th>#</th>
-                        <th class="th-lg">Agent ID</th>
-                        <th class="th-lg">Name</th>
-                        <th class="th-lg">Type</th>
-
-                    </tr>
+                        <tr>
+                            <th>#</th>
+                            <th>Agent ID</th>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Action</th>   
+                            
+                        </tr>
                     </thead>
                     <tbody>
-
-                    <?php
-                    $serial = 1;
-                    foreach ($array_list_agent as $key => $value) {
-                        echo '<tr>';
-                        echo '<th>' . $serial++ . '</td>';
-                        echo '<td>' . $value["agent_id"] . '</td>';
-                        echo '<td>' . $value["agent_name"] . '</td>';
-                        echo '<td>' . $value["agent_type"] . '</td>';
-                        echo '</tr>';
-                    }
-                    ?>
-
+                        
+                        <?php 
+                            $serial = 1;
+                            foreach($array_list_agent as $key => $value) {
+                        ?>
+                                <tr>
+                                <td><?php echo $serial++; ?></td>
+                                <td><?php echo $value["agent_id"]; ?></td>
+                                <td><?php echo $value["agent_name"]; ?></td>
+                                <td><?php echo $value["agent_type"]; ?></td>
+                                <td><a href="get_agent.php?action=update&amp;agent_id=<?php echo $value["agent_id"]; ?>"><span class="fa fa-pencil"></span></a>
+                                    <a href="get_agent.php?action=delete&amp;agent_id=<?php echo $value["agent_id"]; ?>"><span class="fa fa-trash"></span></a>
+                                </td>
+                                </tr>
+                        <?php
+                            } 
+                        ?>
+                        
                     </tbody>
                 </table>
                 <!--Table-->
 
             </div>
 
-
+             
         </div>
     </div>
-</div>
-<!-- /Start your project here-->
+    </div>
+    <!-- /Start your project here-->
 
-<!-- SCRIPTS -->
-<!-- JQuery -->
-<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
-<!-- Bootstrap tooltips -->
-<script type="text/javascript" src="js/popper.min.js"></script>
-<!-- Bootstrap core JavaScript -->
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
-<!-- MDB core JavaScript -->
-<script type="text/javascript" src="js/mdb.min.js"></script>
+    <!-- SCRIPTS -->
+    <!-- JQuery -->
+    <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="js/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="js/mdb.min.js"></script>
 </body>
 
 </html>
