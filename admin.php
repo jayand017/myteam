@@ -180,7 +180,7 @@ include("conf/config.php");
                                 <td><?php echo $value["agent_name"]; ?></td>
                                 <td><?php echo $value["agent_type"]; ?></td>
                                 <td><a href="get_agent.php?action=update&amp;agent_id=<?php echo $value["agent_id"]; ?>"><span class="fa fa-pencil"></span></a>
-                                    <a href="get_agent.php?action=delete&amp;agent_id=<?php echo $value["agent_id"]; ?>"><span class="fa fa-trash"></span></a>
+                                    <a href="delete_agent.php?action=delete&amp;agent_id=<?php echo $value["agent_id"]; ?>"><span class="fa fa-trash"></span></a>
                                 </td>
                                 </tr>
                         <?php

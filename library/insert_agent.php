@@ -4,10 +4,10 @@ class InsertAgent {
 
 
     /**
-     * returns hospital wise count
+     * insert a row of data
      */
     public function insert_agent(DB $db, $agent_id, $agent_name, $agent_pass, $agent_type) {
-        //return doc_hospital name and its count value
+        //query to insert an agent
         $sql_insert_agent = "INSERT INTO agents (agent_id, agent_name, agent_pass, agent_type)
                              VALUES ('$agent_id', '$agent_name', '$agent_pass', '$agent_type')
                              ";
