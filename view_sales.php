@@ -26,7 +26,7 @@ else{
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet">
     <!-- Material Design Bootstrap -->
     <link href="css/mdb.min.css" rel="stylesheet">
     <!-- Your custom styles (optional) -->
@@ -40,6 +40,11 @@ else{
 
         .dataTables_wrapper .mdb-select {
            
+        }
+        select.form-control.form-control-sm {
+            margin-left: 5px;
+            margin-right: 5px;
+            margin-top: -5px;
         }
         .dataTables_wrapper .mdb-select.form-control {
             padding-top: 2px;
@@ -68,6 +73,7 @@ else{
         .w-auto {
             width: auto;
         }
+
     </style>
 
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css"/>
@@ -219,7 +225,11 @@ else{
             }
             ?>
         </div>
+        <div>
+            <button class="btn btn-secondary" onClick="download();" >Download Report</button>
+        </div>
     </div>
+            
     </div>
     <!-- /Start your project here-->
 
@@ -236,13 +246,23 @@ else{
     <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
 
+    <script type="text/javascript" src="Export/tableExport.js"></script>
+    <script type="text/javascript" src="Export/jquery.base64.js"></script>
+
+    <script type="text/javascript" src="Export/sprintf.js"></script>
+    <script type="text/javascript" src="Export/jspdf.js"></script>
+    <script type="text/javascript" src="Export/base64.js"></script>
+
     <script>
         $(document).ready(function() {
             $('#sale_list').DataTable();
-            $('select').addClass('mdb-select');
-            $('.mdb-select').material_select();
         });
+
+        function download(){
+            $('#sale_list').tableExport({type:'excel',escape:'false'});
+        }
     </script>
+
 </body>
 
 </html>
