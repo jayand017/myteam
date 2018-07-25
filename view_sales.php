@@ -256,6 +256,8 @@ else{
     <script>
         $(document).ready(function() {
             $('#sale_list').DataTable();
+            $('select').addClass('mdb-select');
+            $('.mdb-select').material_select();
         });
 
         function download(){
